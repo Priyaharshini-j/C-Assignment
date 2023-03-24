@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace List
 {
-    internal class StringOP
+    internal class AddFrontBack
     {
         public static void Main(string[] args)
         {
