@@ -17,53 +17,24 @@ namespace Assignment2
 
         static void Main(string[] args)
         {
-            int[] prices = { 4, 6, 2, 3, 1, 8, 5, 10 };
-            int min_price = 1000,max_price = 0;
-            calculate(prices, min_price, max_price);
-            //calculate(prices1 , min_price, max_price);
-
-        }
-        public static void calculate(int[] prices, int min_price, int max_price)
-        {
-            int min_price_index=0, max_price_index=0;
-            foreach(int price in prices)
+            int[] prices = {10,3,8,9,2,3,8,10,1};
+            int profit = 0;
+            int min_price_index=0,max_price_index=0;
+            for(int i=0;i<prices.Length-2;i++)
             {
-                if (price < min_price)
+                for(int j = i; j < prices.Length - 1; j++)
                 {
-                    min_price = price;
-                }
-                if (price > max_price)
-                {
-                    max_price = price;
-                }
-                             
-            }
-
-            min_price_index = Array.IndexOf(prices, min_price);
-            max_price_index = Array.IndexOf(prices, max_price);
-            Console.WriteLine(max_price_index);
-            Console.WriteLine(min_price_index);
-
-            if (min_price_index < max_price_index)
-            {
-                Console.WriteLine($"The Stock is brough on day{min_price_index+1} and sell it on {max_price_index+1}");
-                Console.WriteLine($"The Profit is {max_price - min_price}");
-            }
-            else
-            {
-                var dest = new List<int>(prices);
-                if (max_price_index == 0)
-                {
-                    if (max_price_index == prices.Length)
+                    if (profit < (prices[j] - prices[i]))
                     {
-
-                        dest.RemoveAt(min_price_index);
+                        profit = prices[j] - prices[i];
+                        min_price_index = i;
+                        max_price_index=j;
                     }
-                    dest.RemoveAt(max_price_index);
-                    calculate(dest.ToArray(), 1000, 0);
                 }
-                }
+            }
+            Console.WriteLine($"The total profit we gained by selling the stocks is:{profit}");
+            Console.WriteLine($"We buy the goods on the day {min_price_index+1}");
+            Console.WriteLine($"We can sell the goods on the day {max_price_index+1}");
         }
-
     }
 }
